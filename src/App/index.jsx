@@ -8,16 +8,14 @@ class App extends Component {
     b: 10,
     max: 100,
     list: ['Anna', 'Nata', 'Alex'],
-    hero: { name: '' },
+    hero: ' ',
   };
 
   componentDidMount() {
     setTimeout(() => {
-      this.setState({ b: 25 });
+      this.setState({ b: 25, hero: 'Alex' });
     }, 3000);
-
-    // this.setState({ hero: { name: 'Alex' }});
-  };
+  }
 
   addItem = () => {
     this.setState({ list: ['Anna', 'Nata', 'Alex', 'Anton'] });
@@ -30,7 +28,7 @@ class App extends Component {
   }
 
   render() {
-    const { b, max, list } = this.state;
+    const { b, max, list, hero } = this.state;
     const { handlerClick } = this;
     const listOfNames = list.map(name => <li key={name}>{name}</li>);
 
@@ -45,11 +43,9 @@ class App extends Component {
 
           </p>
           <button type="button" onClick={handlerClick}>PUSH</button>
-
-          <Hero 
-            name="Alex"
+          <Hero
+            hero={hero}
           />
-
           <a
             className={styles['App-link']}
             href="https://reactjs.org"
@@ -57,10 +53,8 @@ class App extends Component {
             rel="noopener noreferrer"
           >
             Learn React
-
             {max}
           </a>
-
           <ul>
             {listOfNames}
           </ul>
