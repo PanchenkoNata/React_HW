@@ -24,10 +24,10 @@ Hero.defaultProps = {
 
 Hero.propTypes = {
   hero: PropTypes.string.isRequired,
-  data: {
+  data: PropTypes.shape({
     name: PropTypes.string,
     birth_year: PropTypes.string,
-  },
+  }),
 };
 
 export default Hero;

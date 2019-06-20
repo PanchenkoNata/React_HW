@@ -57,9 +57,7 @@ class App extends Component {
           <img src={logo} className={styles['App-logo']} alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
-
             {b}
-
           </p>
           <button type="button" onClick={handlerClick}>PUSH</button>
           <Hero
