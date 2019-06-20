@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import styles from './styles.module.scss';
 import Hero from '../components/Hero';
+
 
 class App extends Component {
   state = {
@@ -9,12 +11,27 @@ class App extends Component {
     max: 100,
     list: ['Anna', 'Nata', 'Alex'],
     hero: ' ',
+    data: {
+      name: '',
+      birth_year: '',
+    },
   };
 
   componentDidMount() {
     setTimeout(() => {
       this.setState({ b: 25, hero: 'Alex' });
     }, 3000);
+    axios.get('https://swapi.co/api/people/1/')
+      .then(
+        (response) => {
+          const { data } = response;
+          console.log(data);
+          this.setState({
+            data: data,
+          });
+        },
+      )
+      .catch(err => console.log(err));
   }
 
   addItem = () => {
@@ -28,7 +45,9 @@ class App extends Component {
   }
 
   render() {
-    const { b, max, list, hero } = this.state;
+    const {
+      b, max, list, hero, data,
+    } = this.state;
     const { handlerClick } = this;
     const listOfNames = list.map(name => <li key={name}>{name}</li>);
 
@@ -45,6 +64,7 @@ class App extends Component {
           <button type="button" onClick={handlerClick}>PUSH</button>
           <Hero
             hero={hero}
+            data={data}
           />
           <a
             className={styles['App-link']}
